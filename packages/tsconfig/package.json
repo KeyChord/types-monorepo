@@ -18,5 +18,8 @@
     "@types/node": "catalog:",
     "desm": "catalog:",
     "tiny-jsonc": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

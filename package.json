@@ -2,7 +2,7 @@
   "name": "@keychord/types-monorepo",
   "private": true,
   "scripts": {
-    "release": "vp exec --filter ./packages/* vp pack"
+    "release": "vp exec --filter ./packages/* vp pack && vp exec changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",

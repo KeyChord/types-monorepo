@@ -18,5 +18,8 @@
     "@tsconfig/vite-react": "catalog:",
     "desm": "catalog:",
     "llrt-types": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
