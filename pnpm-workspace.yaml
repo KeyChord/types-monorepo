@@ -9,6 +9,6 @@ catalog:
   llrt-types: github:awslabs/llrt#path:/types
   tiny-jsonc: ^1.0.2
   typescript: ^6
-  vite-plus: latest
+  vite-plus: ^0.1.14
 
 catalogMode: prefer

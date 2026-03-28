@@ -1,8 +1,12 @@
 {
   "name": "@keychord/types-monorepo",
   "private": true,
+  "scripts": {
+    "release": "vp exec --filter ./packages/* vp pack"
+  },
   "devDependencies": {
-    "@changesets/cli": "catalog:"
+    "@changesets/cli": "catalog:",
+    "vite-plus": "catalog:"
   },
   "packageManager": "pnpm@10.33.0"
 }
