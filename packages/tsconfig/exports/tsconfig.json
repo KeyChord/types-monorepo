@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "target": "ES2024",
+    "lib": [
+      "ES2024"
+    ],
+    "moduleDetection": "force",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "erasableSyntaxOnly": true,
+    "typeRoots": [
+      "${configDir}/node_modules/@types",
+      "./types"
+    ],
+    "types": [
+      "@keychord/types"
+    ]
+  }
+}

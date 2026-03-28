@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+    // We use the latest Node.js module resolution that supports the `package.json` "imports" property.
+		"module": "preserve",
+
+    // This makes TypeScript use the "imports" field in `package.json` to resolve imports.
+		"moduleResolution": "bundler",
+
+    // See the bottom of https://test262.fyi/#%7Cqjs_ng
+		"target": "ES2024",
+    "lib": ["ES2024"],
+
+    // We only support defining chord files using ESM.
+		"moduleDetection": "force",
+
+    // We don't use `tsc` to build our project because we need a bundler in order to inline all dependencies.
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+		"allowSyntheticDefaultImports": true,
+
+    // Stricter settings for better maintainability.
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "erasableSyntaxOnly": true,
+
+    "typeRoots": [
+      // Keeps the default `node_modules/@types` lookup.
+      "${configDir}/node_modules/@types",
+      // Ensures that the chord package picks up the inlined `@keychord/types` package in our vendored `types/`
+      "./types"
+    ],
+
+    // The default types available to the QuickJS runtime, plus the built-in modules Chord exposes.
+    "types": ["@keychord/types"]
+	}
+}
