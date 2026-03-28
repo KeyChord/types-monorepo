@@ -7,27 +7,16 @@
     "url": "git+https://github.com/KeyChord/tsconfig.git",
     "type": "git"
   },
-  "exports": "./tsconfig.json",
-  "sideEffects": false,
-  "engines": {
-    "node": ">=20"
-  },
+  "exports": "./exports/tsconfig.json",
   "files": [
-    "vendor",
     "src",
-    "tsconfig.json"
+    "exports"
   ],
-  "keywords": [
-    "tsconfig",
-    "typescript",
-    "ts",
-    "config",
-    "configuration"
-  ],
-  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "@keychord/types": "latest",
-    "desm": "^1.3.1",
-    "tiny-jsonc": "^1.0.2"
+    "@keychord/types": "workspace:*",
+    "@tsconfig/vite-react": "catalog:",
+    "@types/node": "catalog:",
+    "desm": "catalog:",
+    "tiny-jsonc": "catalog:"
   }
 }

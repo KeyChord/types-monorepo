@@ -30,4 +30,3 @@
 /// <reference types="./url.d.ts" />
 /// <reference types="./util.d.ts" />
 /// <reference types="./zlib.d.ts" />
-export {}
