@@ -1,6 +1,6 @@
 {
   "name": "@keychord/tsconfig",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Shared TypeScript config for chord packages",
   "license": "MIT",
   "repository": {

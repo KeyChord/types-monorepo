@@ -1,7 +1,7 @@
 {
   "name": "@keychord/types",
   "type": "module",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./exports/default.js",
   "types": "./exports/default.d.ts",
   "exports": {
