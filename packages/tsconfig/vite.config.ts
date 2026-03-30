@@ -16,9 +16,13 @@ export default defineConfig({
     dts: true,
     copy: [
       {
+        from: './node_modules/@keychord/types/package.json',
+        to: 'exports/vendor/@keychord/types',
+      },
+      {
         from: './node_modules/@keychord/types/exports/*.d.ts',
-        to: 'exports/types',
-      }
+        to: 'exports/vendor/@keychord/types/exports',
+      },
     ],
     plugins: [{
       name: 'transform-tsconfig',
