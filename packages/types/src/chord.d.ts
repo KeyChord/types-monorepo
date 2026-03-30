@@ -26,5 +26,10 @@ declare module "chord" {
 
   export interface BuilderThis {
     chordsFile: RawChordsFile
+    chordsFilePath: string;
+  }
+
+  export interface HandlerThis {
+    focusedAppId: string;
   }
 }
