@@ -16,10 +16,15 @@ declare module "chord" {
 
   export function setAppNeedsRelaunch(bundleId: string, needsRelaunch: boolean): void;
 
-  export interface Chord {
+  export interface RawChordsFile {
     name: string;
-    shortcut?: string;
-    shell?: string;
-    args?: string[];
+    meta: Record<string, string>;
+    handlers: Record<string, any>;
+    imports: Array<{ file: string }>;
+    chords: Record<string, any>;
+  }
+
+  export interface BuilderThis {
+    chordsFile: RawChordsFile
   }
 }
