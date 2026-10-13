@@ -13,13 +13,17 @@
     "exports"
   ],
   "devDependencies": {
-    "@keychord/types": "workspace:*",
     "@tsconfig/vite-react": "catalog:",
-    "@types/node": "catalog:",
+    "@types/node": "26.5.0",
+    "bun-types": "1.4.1",
     "desm": "catalog:",
-    "tiny-jsonc": "catalog:"
+    "tiny-jsonc": "catalog:",
+    "typescript": "catalog:"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "test": "vp pack && node --test test/*.test.mjs"
   }
 }

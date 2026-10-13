@@ -1,3 +1,4 @@
 # Chord Types
 
-Needs to be a monorepo because `@keychord/tsconfig` bundles `@keychord/types`.
+Contains `@keychord/types` and `@keychord/tsconfig`. The tsconfig package vendors
+the Bun runtime declarations matching KeyChord's embedded rbun runtime.

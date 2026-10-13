@@ -14,11 +14,11 @@
     "forceConsistentCasingInFileNames": true,
     "erasableSyntaxOnly": true,
     "typeRoots": [
-      "${configDir}/node_modules/@types",
-      "./vendor"
+      "./vendor",
+      "${configDir}/node_modules/@types"
     ],
     "types": [
-      "@keychord/types"
+      "bun-types"
     ]
   }
 }

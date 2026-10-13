@@ -24,13 +24,13 @@
     "erasableSyntaxOnly": true,
 
     "typeRoots": [
-      // Keeps the default `node_modules/@types` lookup.
-      "${configDir}/node_modules/@types",
-      // Ensures that the chord package picks up the inlined `@keychord/types` package in our vendored `vendor/`
-      "./vendor"
+      // Resolves the bundled Bun, Node, and supporting declarations.
+      "./vendor",
+      // Keeps the consumer's `node_modules/@types` lookup for additional types.
+      "${configDir}/node_modules/@types"
     ],
 
-    // The default types available to the QuickJS runtime, plus the built-in modules Chord exposes.
-    "types": ["@keychord/types"]
+    // Runtime types pinned to the Bun version embedded by rbun.
+    "types": ["bun-types"]
 	}
 }
