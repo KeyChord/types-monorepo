@@ -14,8 +14,8 @@
   ],
   "devDependencies": {
     "@tsconfig/vite-react": "catalog:",
-    "@types/node": "26.5.0",
-    "bun-types": "1.4.1",
+    "@types/node": "26.6.5",
+    "bun-types": "catalog:",
     "desm": "catalog:",
     "tiny-jsonc": "catalog:",
     "typescript": "catalog:"

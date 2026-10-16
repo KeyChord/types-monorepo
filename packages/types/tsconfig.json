@@ -1,4 +1,8 @@
 {
   "extends": ["@tsconfig/vite-react"],
+  "compilerOptions": {
+    // The declarations reference their own runtime types; the base's `vite/client` doesn't apply.
+    "types": []
+  },
   "include": ["src"]
 }

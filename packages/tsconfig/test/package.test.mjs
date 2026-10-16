@@ -9,7 +9,8 @@ import test from 'node:test';
 
 const require = createRequire(import.meta.url);
 const packageDir = fileURLToPath(new URL('..', import.meta.url));
-const tsc = require.resolve('typescript/bin/tsc');
+// TypeScript 7's `exports` no longer exposes `bin/tsc`, so resolve it beside the manifest.
+const tsc = join(dirname(require.resolve('typescript/package.json')), 'bin/tsc');
 
 test('packed config provides Bun and transitive types to an isolated consumer', () => {
   const temp = mkdtempSync(join(tmpdir(), 'keychord-tsconfig-'));

@@ -24,7 +24,8 @@ export default defineConfig({
       }
     },
     outDir: 'exports',
-    dts: true,
+    // The entry is JSONC loaded as an empty module, so there are no declarations to emit.
+    dts: false,
     plugins: [{
       name: 'transform-tsconfig',
       writeBundle() {
