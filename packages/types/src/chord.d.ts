@@ -45,6 +45,12 @@ declare module "chord" {
 
   export interface HandlerThis {
     focusedAppId: string;
+    /**
+     * Core Graphics number of the window that was focused when the completed input
+     * started running. Repetitions, loop iterations, and every chord of the run receive
+     * the same window even after focus moves; `null` while typing or when none exists.
+     */
+    focusedWindowId: number | null;
     input: string;
     event: ChordKeyboardEvent | null;
   }
