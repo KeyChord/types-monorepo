@@ -2,14 +2,14 @@
 
 The type definitions for authoring chord packages.
 
-You probably don't need this package directly, and should instead modify your `tsconfig.json` to extend [@keychord/tsconfig](https://github.com/KeyChord/tsconfig) instead.
+It declares Chord's built-in `chord` module; the Bun runtime types come from [@keychord/tsconfig](https://github.com/KeyChord/types-monorepo/tree/main/packages/tsconfig).
 
 ## Usage
 
 First, install the package:
 
 ```bash
-vp add -D @keychord/types
+bun add -d @keychord/types
 ```
 
 Then, add `@keychord/types` to the `types` array in your `tsconfig.json`:
@@ -58,11 +58,11 @@ Common key aliases are supported as well. Common ones include:
 - `alt` for `AltLeft`
 - `shift` for `ShiftLeft`
 
-Combinations of keys are separated by `+`, such as `CommandLeft+ShiftLeft+KeyP` (or in alias form, `cmd+shift+p`).
+Combinations of keys are separated by `+`, such as `MetaLeft+ShiftLeft+KeyP` (or in alias form, `cmd+shift+p`).
 
 ### registerGlobalHotkey(bundleId, hotkeyId)
 
-Registers a global hotkey from the global hotkey pool for the application with the given bundle ID. The global hotkey pool consists of modifier + key combinations that are unlikely to conflict with existing shortcuts (e.g. `ctrl+option+shift+cmd+f1`).
+Registers a global hotkey from the global hotkey pool for the application with the given bundle ID. The global hotkey pool consists of modifier + key combinations that are unlikely to conflict with existing shortcuts (e.g. `ctrl+option+shift+cmd+a`).
 
 Returns a `string` representing the hotkey if it was successfully registered, or `undefined` if there was no more available global hotkeys.
 
@@ -86,7 +86,7 @@ Returns a `string` representing the key combination of the global hotkey matchin
 
 Type: `string`
 
-The bundle ID of the application to register the hotkey for.
+The bundle ID of the application the hotkey was registered for.
 
 #### hotkeyId
 
@@ -98,13 +98,11 @@ A unique identifier for this hotkey (scoped to the bundle ID).
 
 Registers a callback that is called whenever the application with the given bundle ID is launched.
 
-Returns a `() => void` unsubscribe function that can be called to unregister the callback.
-
 #### bundleId
 
 Type: `string`
 
-The bundle ID of the application to register the hotkey for.
+The bundle ID of the application to watch.
 
 #### callback
 
@@ -122,7 +120,7 @@ Returns a `() => void` unsubscribe function that can be called to unregister the
 
 Type: `string`
 
-The bundle ID of the application to register the hotkey for.
+The bundle ID of the application to watch.
 
 #### callback
 
@@ -146,31 +144,37 @@ Type: `boolean`
 
 Whether or not the application needs to be relaunched for changes to take effect (typically set to `true`).
 
+> [!NOTE]
+> This section is largely AI-written, so parts of it may not be fully accurate. It will be replaced with a hand-written version when I get the time.
+
+### resolvePackageFile(importMeta, relativePath)
+
+### resolveNativeModulePath(importMeta, name)
+
+Return absolute paths inside the calling module's chord package, given its `import.meta`:
+
+- **resolvePackageFile** resolves `relativePath` relative to the package root as authored (for example `bin/tool`). Vendored packages are remapped to where their folders were copied. The file doesn't need to exist.
+- **resolveNativeModulePath** resolves the package's prebuilt Node-API add-on `target/<triple>/<name>/<name>.node` for the triple Chord runs on, for use with `process.dlopen`.
+
+Chord also attaches the same helpers to every module it loads as `import.meta.chord.resolvePackageFile(relativePath)` and `import.meta.chord.resolveNative(name)` (not declared by this package). Handlers built with [@keychord/config](https://github.com/KeyChord/config) can import `.node` add-ons directly instead.
+
 ## Types
 
-### Chord
+> [!NOTE]
+> This section is largely AI-written, so parts of it may not be fully accurate. It will be replaced with a hand-written version when I get the time.
+
+These interfaces are exported from the `chord` module:
+
+- `HandlerThis`: the `this` value of a handler call: `focusedAppId`, `focusedWindowId` (the Core Graphics number of the window focused when the input started running, or `null`), `input` (the entered sequence) and `event` (a `ChordKeyboardEvent`, or `null` when there's no keyboard event, e.g. from the CLI).
+- `BuilderThis`: the `this` value of the handler module's default export: `chordsFile` (the chord file's parsed TOML, typed as `RawChordsFile`) and `chordsFilePath`.
+- `ChordKeyboardEvent`: the [KeyboardEvent](https://www.w3.org/TR/uievents/#interface-keyboardevent)-compatible snapshot of the key event (`type`, `key`, `code`, modifier flags, `repeat`, `getModifierState()`, ...).
 
 ```ts
-export type Chord = {
-  name: string;
-  shortcut?: string;
-  shell?: string;
-  args?: string[];
-} & Record<string, any>;
+import type { HandlerThis } from "chord";
+
+export default function build() {
+  return function handler(this: HandlerThis) {
+    console.log(this.focusedAppId, this.input);
+  };
+}
 ```
-
-Represents a chord definition from a Chord TOML file.
-
-## Globals
-
-### `import.meta.bundleId`
-
-Type: `string`
-
-Represents the bundle ID targeted by the current Chord TOML file. Only available inside the inline JavaScript inside the `config.js.module` property.
-
-### `import.meta.chords`
-
-Type: `Record<string, Chord>`
-
-Represents the parsed `chords` table inside the current Chord TOML file. Only available inside the inline JavaScript inside the `config.js.module` property.
