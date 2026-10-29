@@ -5,7 +5,7 @@ The base `tsconfig.json` chord packages should extend from. See [./src/tsconfig.
 > [!NOTE]
 > This section is largely AI-written, so parts of it may not be fully accurate. It will be replaced with a hand-written version when I get the time.
 
-The package vendors `bun-types` 1.4.3, matching the Bun version embedded by
+The package vendors `bun-types` 1.4.4, matching the Bun version embedded by
 [`rbun`](https://github.com/KeyChord/rbun), along with `@types/node` and `undici-types`, and
 selects them with `"types": ["bun-types"]`. Consumers do not need to install these packages
 separately. If you set your own `types`, keep `"bun-types"` in the list. Because the config sets
